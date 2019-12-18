@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import '.styles/index.less'
+import './styles/index.less'
 import ElementUI from 'element-ui'
 Vue.config.productionTip = false
 Vue.use(ElementUI)

@@ -14,8 +14,8 @@
           <el-input v-model="from.code" placeholder="请输入验证码" style="width:65%"></el-input>
           <el-button style="float:right">发送验证码</el-button>
         </el-form-item>
-        <el-form-item v-model="from.check" prop="cheak">
-          <el-checkbox>我已阅读并同意用户协议和隐私条款</el-checkbox>
+        <el-form-item  prop="cheak">
+          <el-checkbox v-model="from.check">我已阅读并同意用户协议和隐私条款</el-checkbox>
         </el-form-item>
         <el-form-item>
           <el-button @click="clot" type="primary" style="width:100%">登录</el-button>
@@ -66,7 +66,6 @@ export default {
       this.$refs.myfrom.validate(function (ok) {
         if (ok) {
         //   认为前端校验登录成功
-
         }
       })
     }

@@ -1,17 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '../views/home/'
 import Logins from '../views/login'
 Vue.use(VueRouter)
 
 const routes = [
   { // 强制跳转
     path: '/',
-    redirect: '/login'
+    redirect: '/home'
   },
   {
     path: '/home',
-    name: 'home',
     component: Home
   }, {
     path: '/login',

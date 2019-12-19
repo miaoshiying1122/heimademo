@@ -7,8 +7,8 @@
         <img src="../../assets/img/logo_index.png" alt />
       </div>
       <el-form ref="myfrom" :model="from" :rules="ruless" style="margin-top:20px">
-        <el-form-item prop="photo">
-          <el-input v-model="from.photo" placeholder="请输入手机号"></el-input>
+        <el-form-item prop="mobile">
+          <el-input v-model="from.mobile" placeholder="请输入手机号"></el-input>
         </el-form-item>
         <el-form-item prop="code">
           <el-input v-model="from.code" placeholder="请输入验证码" style="width:65%"></el-input>
@@ -31,14 +31,14 @@ export default {
   data () {
     return {
       from: {
-        photo: '', // 手机号
+        mobile: '', // 手机号
         code: '', // 验证码
         check: false // 多选框
       },
       //   验证规则   key字段名称:value数组
       ruless: {
         // 如果required为true =>必填。
-        photo: [
+        mobile: [
           { required: true, message: '请输入你的手机号' },
           { pattern: /^1[3456789]\d{9}$/, message: '手机号格式不正确' }
         ],
@@ -63,9 +63,22 @@ export default {
   methods: {
     clot () {
       // 提交登录表单
-      this.$refs.myfrom.validate(function (ok) {
+      this.$refs.myfrom.validate((ok) => {
         if (ok) {
         //   认为前端校验登录成功
+          this.$axios({
+            url: 'authorizations', // 请求地址
+            method: 'post',
+            data: this.from
+          }).then(result => {
+            window.localStorage.setItem('user-token', result.data.data.token) // 前端缓存令牌
+            this.$router.push('/home')
+          }).catch(() => {
+            this.$message({
+              message: '手机号或密码错误，请重新输入',
+              type: 'warning'
+            })
+          })
         }
       })
     }

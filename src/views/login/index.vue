@@ -14,7 +14,7 @@
           <el-input v-model="from.code" placeholder="请输入验证码" style="width:65%"></el-input>
           <el-button style="float:right">发送验证码</el-button>
         </el-form-item>
-        <el-form-item  prop="cheak">
+        <el-form-item  prop="check">
           <el-checkbox v-model="from.check">我已阅读并同意用户协议和隐私条款</el-checkbox>
         </el-form-item>
         <el-form-item>
@@ -71,7 +71,7 @@ export default {
             method: 'post',
             data: this.from
           }).then(result => {
-            window.localStorage.setItem('user-token', result.data.data.token) // 前端缓存令牌
+            window.localStorage.setItem('user-token', result.data.token) // 前端缓存令牌
             this.$router.push('/home')
           }).catch(() => {
             this.$message({
